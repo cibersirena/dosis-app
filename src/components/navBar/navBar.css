@@ -1,0 +1,32 @@
+.navbar-brand img {
+    width: 30%;
+}
+
+.navbar-expand-lg .navbar-nav .nav-link {
+    padding-right: 2rem;
+    padding-left: 1rem;
+    font-size: 19px;
+}
+
+.dropdown-menu {
+    border: 1px solid #c52a76;
+}
+
+.dropdown-item {
+    color: #303030;
+    padding: 0.5rem 1rem;
+}
+
+.dropdown-item:hover {
+    background-color: rgba(0, 89, 121, 0.2);
+}
+
+.offcanvas-header {
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #c52a76; 
+}
+
+.offcanvas.offcanvas-end {
+    width: 500px; 
+}

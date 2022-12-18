@@ -1,0 +1,11 @@
+header {
+    background-image: url("./background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    padding: 6.5rem 0; 
+}
+
+.bg-dark {
+    background-color: #005979 !important;
+}
