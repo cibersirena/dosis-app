@@ -17,7 +17,8 @@ function CartWidget() {
         <>
             <Button variant="primary" className='btn-outline-dark' onClick={handleShow}>
                 <i className="bi-cart-fill me-2"></i>
-                Carrito <Badge pill bg="dark" className='ms-1'>0</Badge>
+                Carrito
+                <Badge pill bg="dark" className='ms-1'>0</Badge>
             </Button>
 
             <Offcanvas show={show} onHide={handleClose} placement="end">
@@ -27,7 +28,7 @@ function CartWidget() {
                 <Offcanvas.Body>
                     <div id='idCarrito'>
                         Mostrar los productos comprados
-                    </div>   
+                    </div>
                 </Offcanvas.Body>
             </Offcanvas>
         </>
