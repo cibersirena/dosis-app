@@ -1,3 +1,4 @@
+import { dataProductos } from '../productos';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -35,6 +36,34 @@ function CartWidget() {
     );
 };
 
+function Menu({ producto }) {
+    return (
+        <NavDropdown.Item href="#">{producto}</NavDropdown.Item>
+    );
+};
+
+function Desplegable() {
+    dataProductos.sort((a, b) => a.tipo.localeCompare(b.tipo));
+    const productosItems = [];
+    dataProductos.forEach((p) => {
+        productosItems.push(p.item);
+    });
+
+    let unicosItems = new Set(productosItems);
+    const menuDesplegable = [];
+    unicosItems.forEach((p) => {
+        menuDesplegable.push(p);
+    });
+
+    return (
+        <>
+            {menuDesplegable.map((p) => (
+                <Menu key={p} producto={p} />
+            ))}
+        </>
+    )
+};
+
 function BarraNavegacion() {
     return (
         <Navbar bg="light" expand="lg">
@@ -48,12 +77,7 @@ function BarraNavegacion() {
                         <Nav.Link href="./index.html">Inicio</Nav.Link>
                         <Nav.Link href="#">Quiénes somos</Nav.Link>
                         <NavDropdown title="Productos" id="navbarDropdown">
-                            <NavDropdown.Item href="#">Gorras</NavDropdown.Item>
-                            <NavDropdown.Item href="#">Identificadores</NavDropdown.Item>
-                            <NavDropdown.Item href="#">Kit infantiles</NavDropdown.Item>
-                            <NavDropdown.Item href="#">Mates</NavDropdown.Item>
-                            <NavDropdown.Item href="#">Remeras</NavDropdown.Item>
-                            <NavDropdown.Item href="#">Tazas</NavDropdown.Item>
+                            <Desplegable />
                         </NavDropdown>
                     </Nav>
                     <Button variant="outline-dark" className='me-3' id="registro">Registrate</Button>

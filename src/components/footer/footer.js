@@ -13,8 +13,8 @@ function Footer() {
                     </Col>
                     <Col lg={6} md={6} sm={3} className="d-flex justify-content-center">
                         <p className="mb-0 text-white">Contacto:</p>
-                        <a href="https://www.facebook.com/dosissublimacion" target="_blank"><i className="bi bi-facebook ms-4"></i></a>
-                        <a href="https://www.instagram.com/dosissublimacion" target="_blank"><i className="bi bi-instagram ms-4"></i></a>
+                        <a href="https://www.facebook.com/dosissublimacion" target="_blank" rel="noreferrer"><i className="bi bi-facebook ms-4"></i></a>
+                        <a href="https://www.instagram.com/dosissublimacion" target="_blank" rel="noreferrer"><i className="bi bi-instagram ms-4"></i></a>
                     </Col>
                 </Row>
             </Container>
