@@ -1,68 +1,11 @@
-import { dataProductos } from '../productos';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
-import Offcanvas from 'react-bootstrap/Offcanvas';
-import Badge from 'react-bootstrap/Badge';
+import CartWidget from './cartWidget';
+import Desplegable from './menuDesplegable';
 import './navBar.css';
-
-function CartWidget() {
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-
-    return (
-        <>
-            <Button variant="primary" className='btn-outline-dark' onClick={handleShow}>
-                <i className="bi-cart-fill me-2"></i>
-                Carrito
-                <Badge pill bg="dark" className='ms-1'>0</Badge>
-            </Button>
-
-            <Offcanvas show={show} onHide={handleClose} placement="end">
-                <Offcanvas.Header closeButton>
-                    <Offcanvas.Title>Tu carrito de compras</Offcanvas.Title>
-                </Offcanvas.Header>
-                <Offcanvas.Body>
-                    <div id='idCarrito'>
-                        Mostrar los productos comprados
-                    </div>
-                </Offcanvas.Body>
-            </Offcanvas>
-        </>
-    );
-};
-
-function Menu({ producto }) {
-    return (
-        <NavDropdown.Item href="#">{producto}</NavDropdown.Item>
-    );
-};
-
-function Desplegable() {
-    dataProductos.sort((a, b) => a.tipo.localeCompare(b.tipo));
-    const productosItems = [];
-    dataProductos.forEach((p) => {
-        productosItems.push(p.item);
-    });
-
-    let unicosItems = new Set(productosItems);
-    const menuDesplegable = [];
-    unicosItems.forEach((p) => {
-        menuDesplegable.push(p);
-    });
-
-    return (
-        <>
-            {menuDesplegable.map((p) => (
-                <Menu key={p} producto={p} />
-            ))}
-        </>
-    )
-};
 
 function BarraNavegacion() {
     return (

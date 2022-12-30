@@ -1,6 +1,6 @@
 import Container from 'react-bootstrap/Container';
 
-function Greeting(props) {
+function ItemListContainer(props) {
     return (
         <main className="pb-5">
             <Container className="px-4 px-lg-5 mt-5">
@@ -10,4 +10,4 @@ function Greeting(props) {
     );
 };
 
-export default Greeting;
+export default ItemListContainer;
