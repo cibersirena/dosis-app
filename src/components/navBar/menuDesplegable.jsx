@@ -1,32 +1,49 @@
 import { dataProductos } from '../productos';
-import NavDropdown from 'react-bootstrap/NavDropdown';
+import MenuItem from './menuItem';
+import { useEffect, useState } from 'react';
+import Spinner from 'react-bootstrap/Spinner';
 
-function Menu({ producto }) {
-    return (
-        <NavDropdown.Item href="#">{producto}</NavDropdown.Item>
-    );
-};
-
-function Desplegable() {
-    dataProductos.sort((a, b) => a.tipo.localeCompare(b.tipo));
-    const productosItems = [];
-    dataProductos.forEach((p) => {
-        productosItems.push(p.item);
+function fetchItems() {
+    return new Promise ( (resolve,reject) => {
+        setTimeout( ()=> {
+            dataProductos ? 
+            resolve(dataProductos) : reject("Se produjo un error al cargar los productos")
+        }, 2000);   
     });
+}
 
-    let unicosItems = new Set(productosItems);
-    const menuDesplegable = [];
-    unicosItems.forEach((p) => {
-        menuDesplegable.push(p);
-    });
+function MenuDesplegable() {
+
+    const [items, setItems] = useState([]);
+    const [loadingItems, setLoadingItems] = useState(true);
+
+    useEffect( () => {
+        setLoadingItems(true);
+        fetchItems().then( (res) => {
+            res.sort((a,b) => a.item.localeCompare(b.item));
+            const productosItems = [];
+            res.forEach((p) => {
+                productosItems.push(p.item);
+            });
+            const unicosItems = new Set(productosItems);
+            const menuDesplegable = [];
+            unicosItems.forEach((p) => {
+                menuDesplegable.push(p);
+            });
+            setItems(menuDesplegable);
+            setLoadingItems(false);
+        }).catch( (err) => {
+            alert(err)
+        });
+    }, []);
 
     return (
         <>
-            {menuDesplegable.map((p) => (
-                <Menu key={p} producto={p} />
+            {loadingItems ? <div className='text-center'><Spinner animation="grow" variant="dark" size="sm" /></div>  : items.map((p, index) => (
+                <MenuItem key={"item_"+index} producto={p} />
             ))}
         </>
     )
 };
 
-export default Desplegable;
+export default MenuDesplegable;

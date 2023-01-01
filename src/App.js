@@ -10,7 +10,7 @@ export default function App() {
     <>
       <BarraNavegacion />
       <Header />
-      <ItemListContainer mensaje="Hola, aquí se verán todos los productos de la tienda" />
+      <ItemListContainer mensaje="Conocé todos nuestros productos" />
       <Footer />
     </>
   );

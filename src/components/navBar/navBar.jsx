@@ -4,7 +4,8 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Button from 'react-bootstrap/Button';
 import CartWidget from './cartWidget';
-import Desplegable from './menuDesplegable';
+import MenuDesplegable from './menuDesplegable';
+import Logo from '../../assets/logo-dosis.png';
 import './navBar.css';
 
 function BarraNavegacion() {
@@ -12,7 +13,7 @@ function BarraNavegacion() {
         <Navbar bg="light" expand="lg">
             <Container className="px-4 px-lg-5">
                 <Navbar.Brand href="./index.html">
-                    <img src="./logo-dosis.png" className="d-inline-block" alt="Dosis sublimación" />
+                    <img src={Logo} className="d-inline-block" alt="Dosis sublimación" />
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="navbarSupportedContent">
@@ -20,7 +21,7 @@ function BarraNavegacion() {
                         <Nav.Link href="./index.html">Inicio</Nav.Link>
                         <Nav.Link href="#">Quiénes somos</Nav.Link>
                         <NavDropdown title="Productos" id="navbarDropdown">
-                            <Desplegable />
+                            <MenuDesplegable />
                         </NavDropdown>
                     </Nav>
                     <Button variant="outline-dark" className='me-3' id="registro">Registrate</Button>
