@@ -4,6 +4,25 @@
     vertical-align: middle;
   }
 
-  .text-dark {
-    color: #005979 !important; 
-  }
+.text-dark {
+  color: #005979 !important; 
+}
+
+.btn.btn-sm {
+  border: none;
+}
+
+.bi-plus-square, .bi-dash-square {
+  font-size: 1.5rem;
+}
+
+.counter {
+  border: 1px solid #005979;
+  border-radius: 10%;
+}
+
+.counter p {
+  vertical-align: middle;
+  display: inline;
+  line-height: 2rem;
+}

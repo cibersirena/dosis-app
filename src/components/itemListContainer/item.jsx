@@ -2,9 +2,9 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Badge from 'react-bootstrap/Badge';
+import ItemCount from './itemCount';
 
 export default function Item ({tipo,precio,imagen,descripcion, stock}) {
-    
     return (
         <Col className='mb-5'>
             <Card className='h-100'>
@@ -16,7 +16,7 @@ export default function Item ({tipo,precio,imagen,descripcion, stock}) {
                     <Card.Text>$ {precio}.- </Card.Text>
                 </Card.Body>
                 <Card.Footer className='p-4 pt-0 border-top-0 bg-transparent text-center'>
-                    <Button variant="outline-dark" id='comprar'>Comprar</Button>
+                    <ItemCount stock={stock} />  
                 </Card.Footer>
             </Card>
         </Col>
