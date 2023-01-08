@@ -10,7 +10,7 @@ function CartWidget() {
 
     return (
         <>
-            <Button variant="primary" className='btn-outline-dark' onClick={handleShow}>
+            <Button variant="primary" className='btn btn-principal' onClick={handleShow}>
                 <i className="bi-cart-fill me-2"></i>
                 Carrito
                 <Badge pill bg="dark" className='ms-1'>0</Badge>

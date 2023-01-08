@@ -1,7 +1,10 @@
-import NavDropdown from 'react-bootstrap/NavDropdown';
+
+import { NavLink } from 'react-router-dom';
 
 export default function MenuItem ({ producto }) {
     return (
-        <NavDropdown.Item href="#">{producto}</NavDropdown.Item>
+        <NavLink to={`./productos/${producto.toLowerCase().replace(/\s+/g, '')}`} className="dropdown-item">
+            {producto}
+        </NavLink>  
     );
 };

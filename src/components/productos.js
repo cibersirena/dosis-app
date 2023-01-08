@@ -4,7 +4,7 @@ export const dataProductos = [
         "tipo": "Taza Cerámica",
         "precio": 1500,
         "stock": 5,
-        "imagen": "./assets/productos/taza-13.jpg",
+        "imagen": "taza-13.jpg",
         "descripcion": "cerámica importada, blanca",
         "item": "Tazas"
     },
@@ -13,7 +13,7 @@ export const dataProductos = [
         "tipo": "Taza Polímero",
         "precio": 800,
         "stock": 6,
-        "imagen": "./assets/productos/taza-18.jpg",
+        "imagen": "taza-18.jpg",
         "descripcion": "cerámica plástico duro, blanca",
         "item": "Tazas"
     },
@@ -22,7 +22,7 @@ export const dataProductos = [
         "tipo": "Remera Mujer",
         "precio": 2000,
         "stock": 0,
-        "imagen": "./assets/productos/remera-03.jpg",
+        "imagen": "remera-03.jpg",
         "descripcion": "remera de modal, talle S, mujer",
         "item": "Remeras"
     },
@@ -31,7 +31,7 @@ export const dataProductos = [
         "tipo": "Identificador Perro",
         "precio": 500,
         "stock": 20,
-        "imagen": "./assets/productos/identificador-45.jpg",
+        "imagen": "identificador-45.jpg",
         "descripcion": "identificador mediano",
         "item": "Identificadores"
     },
@@ -40,7 +40,7 @@ export const dataProductos = [
         "tipo": "Identificador Gato",
         "precio": 500,
         "stock": 20,
-        "imagen": "./assets/productos/identificador-49.jpg",
+        "imagen": "identificador-49.jpg",
         "descripcion": "identificador chico",
         "item": "Identificadores"
     },
@@ -49,7 +49,7 @@ export const dataProductos = [
         "tipo": "Gorra Niños",
         "precio": 1800,
         "stock": 0,
-        "imagen": "./assets/productos/gorra-07.jpg",
+        "imagen": "gorra-07.jpg",
         "descripcion": "gorra para niños",
         "item": "Gorras"
     },
@@ -58,7 +58,7 @@ export const dataProductos = [
         "tipo": "Kit Infantil",
         "precio": 3000,
         "stock": 5,
-        "imagen": "./assets/productos/kit-jardin-02.jpg",
+        "imagen": "kit-jardin-02.jpg",
         "descripcion": "taza + mantel + servilleta + toalla",
         "item": "Kit infantiles"
     },
@@ -67,7 +67,7 @@ export const dataProductos = [
         "tipo": "Mate",
         "precio": 800,
         "stock": 8,
-        "imagen": "./assets/productos/mate-02.jpg",
+        "imagen": "mate-02.jpg",
         "descripcion": "mate de plastico duro con bombilla",
         "item": "Mates"
     },
@@ -76,7 +76,7 @@ export const dataProductos = [
         "tipo": "Remera Hombre",
         "precio": 2000,
         "stock": 4,
-        "imagen": "./assets/productos/remera-04.jpg",
+        "imagen": "remera-04.jpg",
         "descripcion": "remera de modal, talle L, hombre",
         "item": "Remeras"
     },
@@ -85,7 +85,7 @@ export const dataProductos = [
         "tipo": "Mate Individual",
         "precio": 1200,
         "stock": 10,
-        "imagen": "./assets/productos/mate-01.jpg",
+        "imagen": "mate-01.jpg",
         "descripcion": "mate individual",
         "item": "Mates"
     },
@@ -94,7 +94,7 @@ export const dataProductos = [
         "tipo": "Gorra Adultos",
         "precio": 2000,
         "stock": 10,
-        "imagen": "./assets/productos/gorra-06.jpg",
+        "imagen": "gorra-06.jpg",
         "descripcion": "gorra para adultos",
         "item": "Gorras"
     },
@@ -103,7 +103,7 @@ export const dataProductos = [
         "tipo": "Taza Café",
         "precio": 1200,
         "stock": 0,
-        "imagen": "./assets/productos/taza-cafe-09.jpg",
+        "imagen": "taza-cafe-09.jpg",
         "descripcion": "taza polimero ideal para café",
         "item": "Tazas"
     }
