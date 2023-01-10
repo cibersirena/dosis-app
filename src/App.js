@@ -35,8 +35,16 @@ export default function App() {
         <Route
           path="/detail/:productId"
           element={
-            <ItemDetailContainer mensaje="Página en construcción, disculpá las molestias" />
+            <ItemDetailContainer />
           }
+        />
+        <Route
+          path="*"
+          element={
+            <div className="container px-4 px-lg-5 mt-5">
+              <h5 className="fw-lighter mb-5" id="error">Error 404. La página que está buscando no existe</h5>
+            </div>
+          } 
         />
       </Routes>
       <Footer />
