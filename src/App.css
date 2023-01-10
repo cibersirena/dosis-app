@@ -36,3 +36,7 @@ body {
   
 .bg-dark {
   background-color: #005979 !important; }
+
+.w-100 {
+  width: 100%;
+}

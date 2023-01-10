@@ -8,7 +8,8 @@ function ItemCount ({stock}){
     const [count, setCount] = useState(0);
     return (
         <>
-            <Row className='justify-content-center mb-4'>
+            <Row className='justify-content-center mb-4 mt-5'>
+                <Col></Col>
                 <Col>
                     <Button variant='secondary' size='sm' className='p-0 m-0' disabled={stockDisponible} onClick={() => (stock > 0) && (count < stock) ? setCount(count + 1) : alert("No hay más stock, elegí una cantidad menor o igual a: "+ stock)}>
                         <i className='bi bi-plus-square text-dark'></i>
@@ -22,8 +23,9 @@ function ItemCount ({stock}){
                     <i className='bi bi-dash-square text-dark'></i>
                     </Button>
                 </Col>
+                <Col></Col>
             </Row>
-            <Button variant="outline-dark" id='comprar'>Comprar</Button>
+            <Button variant="outline-dark" id='comprar'>Agregar al carrito</Button>
         </> 
     )
 };
