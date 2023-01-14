@@ -60,7 +60,7 @@ export const dataProductos = [
         "stock": 5,
         "imagen": "kit-jardin-02.jpg",
         "descripcion": "taza + mantel + servilleta + toalla",
-        "item": "Kit infantiles"
+        "item": "Kit-Infantiles"
     },
     {
         "id": 5,
