@@ -3,19 +3,19 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useState, useEffect } from 'react';
 
-function ItemCount ({stock,handleAdd}){
+function ItemCount ({ stock, onAdd }){
     const [unidades, setUnidades] = useState(0);
     const [stockDisponible, setStockDisponible] = useState("");
-    const [btnComprar, setBtnComprar] = useState("btn-secondary")
+    const [btnConfirmar, setBtnConfirmar] = useState("btn-secondary");
 
     useEffect ( () => {
-        let stockValor
+        let stockValor;
             if (stock > 0) {
                 stockValor = "";
             }else{
                 stockValor = 'disabled'
             };
-            setStockDisponible(stockValor)
+            setStockDisponible(stockValor);
     
     },[stock]);
 
@@ -28,8 +28,11 @@ function ItemCount ({stock,handleAdd}){
     };
 
     const handleConfirmar = () => {
-        handleAdd(unidades);
-        setBtnComprar("hide");
+        onAdd(unidades);
+        if (unidades > 0) {
+           setBtnConfirmar("hide");
+           setStockDisponible("disabled");  
+        };  
     };
 
     return (
@@ -51,9 +54,9 @@ function ItemCount ({stock,handleAdd}){
                 </Col>
                 <Col></Col>
             </Row>
-            <Button variant="outline-dark" id='comprar' className={btnComprar} onClick={handleConfirmar}>Confirmar cantidad</Button>
+            <Button variant="outline-dark" id='comprar' className={btnConfirmar} onClick={handleConfirmar}>Confirmar cantidad</Button>
         </> 
-    )
+    );
 };
 
 export default ItemCount

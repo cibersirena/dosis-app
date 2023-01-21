@@ -7,10 +7,10 @@ import ItemCount from './itemCount';
 export default function ItemDetail ({producto}) {
     const [agregarCarrito, setAgregarCarrito] = useState(false);
 
-    const handleAdd = (unidades) => {
+    const onAdd = (unidades) => {
         console.log(unidades);
         unidades  > 0 ? setAgregarCarrito(true) : alert("La cantidad debe ser mayor a 0");
-    }
+    };
 
     const imgUrl = "../../assets/productos/";
 
@@ -26,11 +26,11 @@ export default function ItemDetail ({producto}) {
                     <p>{producto.descripcion} </p>
                     <h2><Badge pill bg="dark" className='badgeStock'>{producto.stock > 0 ? '' : 'sin stock'}</Badge></h2>
                     
-                    <ItemCount stock={producto.stock} handleAdd={handleAdd} className='pt-5' />
+                    <ItemCount stock={producto.stock} onAdd={onAdd} className='pt-5' />
                     
                 </div>
                 <div className='text-center mt-3'>
-                    {agregarCarrito && <Button variant="outline-dark" id='ir-carrito' >Agregar al carrito</Button>}
+                    {agregarCarrito && <Button variant="outline-dark" id='agregar-carrito' >Agregar al carrito</Button>}
                 </div>
             </div>
         </Row>
