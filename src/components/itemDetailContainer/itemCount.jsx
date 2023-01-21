@@ -1,31 +1,57 @@
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-function ItemCount ({stock}){
-    let stockDisponible = stock > 0 ? '' : 'disabled';
-    const [count, setCount] = useState(0);
+function ItemCount ({stock,handleAdd}){
+    const [unidades, setUnidades] = useState(0);
+    const [stockDisponible, setStockDisponible] = useState("");
+    const [btnComprar, setBtnComprar] = useState("btn-secondary")
+
+    useEffect ( () => {
+        let stockValor
+            if (stock > 0) {
+                stockValor = "";
+            }else{
+                stockValor = 'disabled'
+            };
+            setStockDisponible(stockValor)
+    
+    },[stock]);
+
+    const sumarUnidad = () => {
+        (stock > 0) && (unidades < stock) ? setUnidades(unidades + 1) : alert("No hay más stock, elegí una cantidad menor o igual a: "+ stock)
+    };
+
+    const restarUnidad = () => {
+        (unidades > 0) && (unidades <= stock) ? setUnidades(unidades - 1) : alert("La cantidad no puede ser negativa")
+    };
+
+    const handleConfirmar = () => {
+        handleAdd(unidades);
+        setBtnComprar("hide");
+    };
+
     return (
         <>
             <Row className='justify-content-center mb-4 mt-5'>
                 <Col></Col>
                 <Col>
-                    <Button variant='secondary' size='sm' className='p-0 m-0' disabled={stockDisponible} onClick={() => (stock > 0) && (count < stock) ? setCount(count + 1) : alert("No hay más stock, elegí una cantidad menor o igual a: "+ stock)}>
+                    <Button variant='secondary' size='sm' className='p-0 m-0' disabled={stockDisponible} onClick={sumarUnidad}>
                         <i className='bi bi-plus-square text-dark'></i>
                     </Button>
                 </Col>
                 <Col className='counter'>
-                    <p className='mb-0'>{count}</p>
+                    <p className='mb-0'>{unidades}</p>
                 </Col>
                 <Col>
-                    <Button variant='secondary' size='sm' className='p-0 m-0' disabled={stockDisponible} onClick={() => (count > 0) && (count <= stock) ? setCount(count - 1) : alert("La cantidad no puede ser negativa")}>
+                    <Button variant='secondary' size='sm' className='p-0 m-0' disabled={stockDisponible} onClick={restarUnidad}>
                     <i className='bi bi-dash-square text-dark'></i>
                     </Button>
                 </Col>
                 <Col></Col>
             </Row>
-            <Button variant="outline-dark" id='comprar'>Agregar al carrito</Button>
+            <Button variant="outline-dark" id='comprar' className={btnComprar} onClick={handleConfirmar}>Confirmar cantidad</Button>
         </> 
     )
 };
