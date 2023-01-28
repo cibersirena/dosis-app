@@ -3,10 +3,10 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useState, useEffect } from 'react';
 
-function ItemCount ({ stock, onAdd }){
+function ItemCount ({ stock, onAdd}){
     const [unidades, setUnidades] = useState(0);
     const [stockDisponible, setStockDisponible] = useState("");
-    const [btnConfirmar, setBtnConfirmar] = useState("btn-secondary");
+    const [btnAgregarCarrito, setBtnAgregarCarrito] = useState("btn-principal");
 
     useEffect ( () => {
         let stockValor;
@@ -27,12 +27,12 @@ function ItemCount ({ stock, onAdd }){
         (unidades > 0) && (unidades <= stock) ? setUnidades(unidades - 1) : alert("La cantidad no puede ser negativa")
     };
 
-    const handleConfirmar = () => {
-        onAdd(unidades);
+    const handleAddCart = () => {
         if (unidades > 0) {
-           setBtnConfirmar("hide");
-           setStockDisponible("disabled");  
+            setBtnAgregarCarrito("hide");
+            setStockDisponible("disabled");
         };  
+        onAdd(unidades);
     };
 
     return (
@@ -54,7 +54,7 @@ function ItemCount ({ stock, onAdd }){
                 </Col>
                 <Col></Col>
             </Row>
-            <Button variant="outline-dark" id='comprar' className={btnConfirmar} onClick={handleConfirmar}>Confirmar cantidad</Button>
+            <Button variant="outline-dark" id='comprar' className={btnAgregarCarrito} onClick={handleAddCart}>Agregar al carrito</Button>
         </> 
     );
 };

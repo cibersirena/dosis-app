@@ -1,18 +1,26 @@
-import { useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import Badge from 'react-bootstrap/Badge';
 import Row from 'react-bootstrap/Row';
-import Button from 'react-bootstrap/Button';
 import ItemCount from './itemCount';
+import { cartContext } from '../context/cartProvider';
+import { Link } from 'react-router-dom';
 
 export default function ItemDetail ({producto}) {
+    const imgUrl = "../../assets/productos/";
     const [agregarCarrito, setAgregarCarrito] = useState(false);
+    const { agregarProducto } = useContext(cartContext);
+    const [unidadesLocal, setUnidadesLocal] = useState(0);
 
     const onAdd = (unidades) => {
         console.log(unidades);
         unidades  > 0 ? setAgregarCarrito(true) : alert("La cantidad debe ser mayor a 0");
+        setUnidadesLocal(unidades);
     };
 
-    const imgUrl = "../../assets/productos/";
+    useEffect( () => {
+        unidadesLocal > 0 && agregarProducto(producto,unidadesLocal)
+    }, [unidadesLocal])
+    
 
     return (
         <Row className='justify-content-around'>
@@ -30,7 +38,11 @@ export default function ItemDetail ({producto}) {
                     
                 </div>
                 <div className='text-center mt-3'>
-                    {agregarCarrito && <Button variant="outline-dark" id='agregar-carrito' >Agregar al carrito</Button>}
+                    {agregarCarrito && 
+                        <>
+                        <Link to="../../cart" className='outline-dark btn btn-secondary mb-3' id='finalizar'>Finalizar compra</Link>
+                        <Link to="../../" className='outline-dark btn' id='seguir'>Seguir comprando</Link>
+                        </>}
                 </div>
             </div>
         </Row>

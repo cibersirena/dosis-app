@@ -44,7 +44,7 @@ export default function App() {
           <Route
             path="/cart"
             element={
-              <Cart />
+              <Cart mensaje="Productos en tu carrito de compras"/>
             }
           />
           <Route
