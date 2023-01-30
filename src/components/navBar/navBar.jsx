@@ -1,4 +1,4 @@
-import { dataProductos } from '../productos';
+//import { dataProductos } from '../productos';
 import { useEffect, useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
@@ -8,37 +8,44 @@ import CartWidget from './cartWidget';
 import MenuDesplegable from './menuDesplegable';
 import Logo from '../../assets/logo-dosis.png';
 import { Link, NavLink } from 'react-router-dom';
+import { categoryCollection } from '../../firebaseConfig';
+import { getDocs, query, orderBy } from 'firebase/firestore';
 import './navBar.css';
 
-function cargaItems() {
+/*function cargaItems() {
     return new Promise ( (resolve,reject) => {
         setTimeout( ()=> {
             dataProductos ? 
             resolve(dataProductos) : reject("Se produjo un error al cargar los productos")
         }, 2000);   
     });
-}
+}*/
 
 function NavBar() {
 
     const [items, setItems] = useState([]);
 
     useEffect( () => {
-        cargaItems().then( (res) => {
-            res.sort((a,b) => a.item.localeCompare(b.item));
-            const productosItems = [];
-            res.forEach((p) => {
-                productosItems.push(p.item);
+        const cargarCategorias = () => {
+            const categoriasOrdenadas = query(categoryCollection,orderBy("item"));
+            const pedidoCategorias = getDocs(categoriasOrdenadas)
+
+            pedidoCategorias
+            .then ( (res) => { 
+                const categoria = [];
+                res.docs.forEach((doc) => {
+                    categoria.push(doc.data().item)
+                });
+               
+                setItems(categoria)
+            })
+            .catch( (err) => {
+                alert(err)
             });
-            const unicosItems = new Set(productosItems);
-            const menuDesplegable = [];
-            unicosItems.forEach((p) => {
-                menuDesplegable.push(p);
-            });
-            setItems(menuDesplegable);
-        }).catch( (err) => {
-            alert(err)
-        });
+        };
+
+        cargarCategorias();
+
     }, []);
 
     return (
@@ -53,7 +60,7 @@ function NavBar() {
                         <NavLink to="./" className='nav-link'>Inicio</NavLink>
                         <NavLink to="./about" className='nav-link'>Quiénes somos</NavLink>
                         <NavDropdown title="Productos" id="navbarDropdown">
-                            <MenuDesplegable items={items} />
+                            <MenuDesplegable categoria={items} />
                         </NavDropdown>
                     </Nav>
                     <Link to="./about" className='me-3 btn btn-principal'>Registrate</Link> 

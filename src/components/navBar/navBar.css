@@ -25,13 +25,3 @@
 .dropdown-item.active{
     color: #005979;
 }
-
-.offcanvas-header {
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
-    border-bottom-color: #c52a76; 
-}
-
-.offcanvas.offcanvas-end {
-    width: 500px; 
-}

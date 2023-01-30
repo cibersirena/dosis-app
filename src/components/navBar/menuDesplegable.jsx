@@ -1,13 +1,13 @@
-import MenuItem from './menuItem';
+import { NavLink } from 'react-router-dom';
 
-function MenuDesplegable({items}) {
+export default function MenuDesplegable({ categoria }) {
     return (
         <>
-            {items.map((p, index) => (
-                <MenuItem key={"item_"+index} producto={p} />
+            {categoria.map((p, index) => (
+                <NavLink to={`./productos/${p.toLowerCase()}`} className="dropdown-item" key={'categoria_'+index}>
+                {p.replace(/(-)/gm, ' ')}
+                </NavLink>  
             ))}
         </>
     )
 };
-
-export default MenuDesplegable;

@@ -3,7 +3,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useState, useEffect } from 'react';
 
-function ItemCount ({ stock, onAdd}){
+function ItemCount ({ stock, onAdd }){
     const [unidades, setUnidades] = useState(0);
     const [stockDisponible, setStockDisponible] = useState("");
     const [btnAgregarCarrito, setBtnAgregarCarrito] = useState("btn-principal");

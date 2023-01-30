@@ -1,11 +1,12 @@
 import Container from 'react-bootstrap/Container';
-import { dataProductos } from '../productos';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Row from 'react-bootstrap/Row';
 import Spinner from 'react-bootstrap/Spinner';
 import ItemList from './itemList';
 import './itemListContainer.css';
+import { productsCollection } from '../../firebaseConfig';
+import { getDocs, query, where, orderBy } from 'firebase/firestore';
 
 function ItemListContainer(props) {
     const [productos, setProductos] = useState([]);
@@ -16,24 +17,31 @@ function ItemListContainer(props) {
 
     useEffect( () => {
         const cargarProductos = () => {
-            return new Promise ( (resolve,reject) => {
-                setTimeout( ()=> {
-                    dataProductos ? 
-                    resolve(dataProductos) : reject("Se produjo un error al cargar los productos")
-                }, 2000);   
-            });
-        }
+            
+            setLoading(true);
 
-        setLoading(true);
-        cargarProductos().then( (res) => {
-            res.sort((a, b) => a.tipo.localeCompare(b.tipo));
-            const productosFiltrados = res.filter( (prod) => prod.item.toLowerCase() === categoryItem );
-            const productosFinales = categoryItem ? productosFiltrados : res;
-            setProductos(productosFinales);
-            setLoading(false);
-        }).catch( (err) => {
-            alert(err)
-        });
+            const productosFinales = categoryItem ? query(productsCollection,where("item","==",categoryItem)) : query(productsCollection,orderBy("tipo"));
+           
+            const pedidoProductos = getDocs(productosFinales)
+
+            pedidoProductos
+            .then( (res) => { 
+                const productos = res.docs.map( (doc) => {
+                    return { id: doc.id, ...doc.data()}
+                });
+
+                setProductos(productos);
+                setLoading(false);
+                
+            })
+            .catch( (err) => {
+                err = "Se produjo un error al cargar los productos"
+                alert(err)
+            })
+        };
+
+        cargarProductos()
+
     }, [categoryItem]);
 
     return (

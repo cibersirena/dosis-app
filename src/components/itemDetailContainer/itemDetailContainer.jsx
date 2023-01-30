@@ -1,35 +1,45 @@
 import { useEffect, useState } from 'react';
-import { dataProductos } from '../productos';
 import { useParams } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
+import Spinner from 'react-bootstrap/Spinner';
 import ItemDetail from './itemDetail';
+import { productsCollection } from '../../firebaseConfig';
+import { getDoc, doc } from 'firebase/firestore';
 
 function ItemDetailContainer() {
     const [detalleItem, setDetalleItem] = useState({});
+    const [loading, setLoading] = useState(true);
     const {productId} = useParams();
 
     useEffect( () => {
         const obtenerProducto = () => {
-            return new Promise( (resolve,reject) => {
-                setTimeout( ()=> {
-                    dataProductos ? 
-                    resolve(dataProductos) : reject("Se produjo un error al cargar el detalle del producto")
-                }, 500); 
+            setLoading(true);
+
+            const referenciaProducto = doc(productsCollection, productId)
+            const pedidoProducto = getDoc(referenciaProducto);
+
+            pedidoProducto
+            .then( (res) => {
+                const productoEncontrado = { id: res.id, ...res.data()};
+                
+                setDetalleItem(productoEncontrado);
+                setLoading(false);
+
+            })
+            .catch ( (err) => {
+                err = "Se produjo un error al cargar el detalle del producto";
+                alert(err);
             })
         };
-        obtenerProducto().then( (res) => {
-            const productoEncontrado = res.find( (pe) => pe.id.toString() === productId )
-            setDetalleItem(productoEncontrado)
 
-        }).catch ( (err) => {
-            alert(err)
-        });
+        obtenerProducto();
+
     }, [productId])
 
     return (
         <main className="pb-5">
             <Container className="px-4 px-lg-5 mt-5">
-                <ItemDetail producto={detalleItem} />
+                {loading ? <div className='text-center'><Spinner animation="grow" variant="dark" size="sm" /> <Spinner animation="grow" variant="dark" /> <Spinner animation="grow" variant="dark" size="sm" /></div> : <ItemDetail producto={detalleItem} />} 
             </Container>
         </main>
     );

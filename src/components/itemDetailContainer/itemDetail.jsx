@@ -8,18 +8,19 @@ import { Link } from 'react-router-dom';
 export default function ItemDetail ({producto}) {
     const imgUrl = "../../assets/productos/";
     const [agregarCarrito, setAgregarCarrito] = useState(false);
-    const { agregarProducto } = useContext(cartContext);
     const [unidadesLocal, setUnidadesLocal] = useState(0);
+    const { agregarProducto } = useContext(cartContext);
 
     const onAdd = (unidades) => {
         console.log(unidades);
         unidades  > 0 ? setAgregarCarrito(true) : alert("La cantidad debe ser mayor a 0");
         setUnidadesLocal(unidades);
     };
-
+    
     useEffect( () => {
-        unidadesLocal > 0 && agregarProducto(producto,unidadesLocal)
-    }, [unidadesLocal])
+        unidadesLocal > 0 && agregarProducto(producto,unidadesLocal);
+        // eslint-disable-next-line 
+    }, [unidadesLocal]);
     
 
     return (
@@ -40,8 +41,8 @@ export default function ItemDetail ({producto}) {
                 <div className='text-center mt-3'>
                     {agregarCarrito && 
                         <>
-                        <Link to="../../cart" className='outline-dark btn btn-secondary mb-3' id='finalizar'>Finalizar compra</Link>
-                        <Link to="../../" className='outline-dark btn' id='seguir'>Seguir comprando</Link>
+                        <Link to="../../cart" className='outline-dark btn btn-secondary mb-3 mx-1' id='finalizar'>Finalizar compra</Link>
+                        <Link to="../../" className='outline-dark btn mb-3 mx-1' id='seguir'>Seguir comprando</Link>
                         </>}
                 </div>
             </div>
