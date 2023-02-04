@@ -14,17 +14,14 @@ function ItemDetailContainer() {
     useEffect( () => {
         const obtenerProducto = () => {
             setLoading(true);
-
             const referenciaProducto = doc(productsCollection, productId)
             const pedidoProducto = getDoc(referenciaProducto);
 
             pedidoProducto
             .then( (res) => {
                 const productoEncontrado = { id: res.id, ...res.data()};
-                
                 setDetalleItem(productoEncontrado);
                 setLoading(false);
-
             })
             .catch ( (err) => {
                 err = "Se produjo un error al cargar el detalle del producto";
@@ -34,7 +31,7 @@ function ItemDetailContainer() {
 
         obtenerProducto();
 
-    }, [productId])
+    }, [productId]);
 
     return (
         <main className="pb-5">

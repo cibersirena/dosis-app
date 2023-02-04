@@ -5,14 +5,13 @@ import ItemCount from './itemCount';
 import { cartContext } from '../context/cartProvider';
 import { Link } from 'react-router-dom';
 
-export default function ItemDetail ({producto}) {
+function ItemDetail ({producto}) {
     const imgUrl = "../../assets/productos/";
     const [agregarCarrito, setAgregarCarrito] = useState(false);
     const [unidadesLocal, setUnidadesLocal] = useState(0);
     const { agregarProducto } = useContext(cartContext);
 
     const onAdd = (unidades) => {
-        console.log(unidades);
         unidades  > 0 ? setAgregarCarrito(true) : alert("La cantidad debe ser mayor a 0");
         setUnidadesLocal(unidades);
     };
@@ -21,7 +20,6 @@ export default function ItemDetail ({producto}) {
         unidadesLocal > 0 && agregarProducto(producto,unidadesLocal);
         // eslint-disable-next-line 
     }, [unidadesLocal]);
-    
 
     return (
         <Row className='justify-content-around'>
@@ -34,9 +32,7 @@ export default function ItemDetail ({producto}) {
                     <h3 className='fw-bolder'>$ {producto.precio}.- </h3>
                     <p>{producto.descripcion} </p>
                     <h2><Badge pill bg="dark" className='badgeStock'>{producto.stock > 0 ? '' : 'sin stock'}</Badge></h2>
-                    
                     <ItemCount stock={producto.stock} onAdd={onAdd} className='pt-5' />
-                    
                 </div>
                 <div className='text-center mt-3'>
                     {agregarCarrito && 
@@ -48,4 +44,6 @@ export default function ItemDetail ({producto}) {
             </div>
         </Row>
     );
-}
+};
+
+export default ItemDetail

@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 
-export default function MenuDesplegable({ categoria }) {
+function MenuDesplegable({ categoria }) {
     return (
         <>
             {categoria.map((p, index) => (
@@ -11,3 +11,5 @@ export default function MenuDesplegable({ categoria }) {
         </>
     )
 };
+
+export default MenuDesplegable;

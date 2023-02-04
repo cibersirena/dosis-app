@@ -3,7 +3,7 @@ import Card from 'react-bootstrap/Card';
 import Badge from 'react-bootstrap/Badge';
 import { Link } from 'react-router-dom';
 
-export default function Item ({item,url}) {
+function Item ({item,url}) {
     const imgUrl = url ? "../../assets/productos/" : "./assets/productos/";
 
     return (
@@ -22,4 +22,6 @@ export default function Item ({item,url}) {
             </Card>
         </Col>
     );
-}
+};
+
+export default Item;

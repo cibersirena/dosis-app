@@ -12,23 +12,13 @@ import { categoryCollection } from '../../firebaseConfig';
 import { getDocs, query, orderBy } from 'firebase/firestore';
 import './navBar.css';
 
-/*function cargaItems() {
-    return new Promise ( (resolve,reject) => {
-        setTimeout( ()=> {
-            dataProductos ? 
-            resolve(dataProductos) : reject("Se produjo un error al cargar los productos")
-        }, 2000);   
-    });
-}*/
-
 function NavBar() {
-
     const [items, setItems] = useState([]);
 
     useEffect( () => {
         const cargarCategorias = () => {
             const categoriasOrdenadas = query(categoryCollection,orderBy("item"));
-            const pedidoCategorias = getDocs(categoriasOrdenadas)
+            const pedidoCategorias = getDocs(categoriasOrdenadas);
 
             pedidoCategorias
             .then ( (res) => { 
@@ -37,10 +27,11 @@ function NavBar() {
                     categoria.push(doc.data().item)
                 });
                
-                setItems(categoria)
+                setItems(categoria);
             })
             .catch( (err) => {
-                alert(err)
+                err = "Se produjo un error al cargar las categorias";
+                alert(err);
             });
         };
 

@@ -11,18 +11,15 @@ import { getDocs, query, where, orderBy } from 'firebase/firestore';
 function ItemListContainer(props) {
     const [productos, setProductos] = useState([]);
     const [loading, setLoading] = useState(true);
-
     const {categoryItem} = useParams();
     const categoryFilter = categoryItem ? categoryItem.toUpperCase() : "";
 
     useEffect( () => {
         const cargarProductos = () => {
-            
             setLoading(true);
 
             const productosFinales = categoryItem ? query(productsCollection,where("item","==",categoryItem)) : query(productsCollection,orderBy("tipo"));
-           
-            const pedidoProductos = getDocs(productosFinales)
+            const pedidoProductos = getDocs(productosFinales);
 
             pedidoProductos
             .then( (res) => { 
@@ -35,12 +32,12 @@ function ItemListContainer(props) {
                 
             })
             .catch( (err) => {
-                err = "Se produjo un error al cargar los productos"
-                alert(err)
+                err = "Se produjo un error al cargar los productos";
+                alert(err);
             })
         };
 
-        cargarProductos()
+        cargarProductos();
 
     }, [categoryItem]);
 

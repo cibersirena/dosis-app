@@ -1,27 +1,29 @@
 import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
 
-const CartItem = ({producto}) => {
+function CartItem ({producto, delProduct}) {
     const imgUrl = "../../assets/productos/";
+
+    const handleDelProduct = () => {
+        const idProduct = producto.id;
+        delProduct (idProduct);
+    };
+
     return (
         <Row className='justify-content-center'>
-            <div className="col-2 d-flex align-items-center p-2">
-                <img src={`${imgUrl}${producto.imagen}`} alt={producto.tipo} width="100%" />
-            </div>
-            <div className="col-2 d-flex align-items-center p-2">
-                {producto.tipo}
-            </div>
-            <div className="col-2 d-flex align-items-center p-2">
-                $ {producto.precio}.-
-            </div>
-            <div className="col-2 d-flex align-items-center p-3">
-                {producto.unidades}
-            </div>
-            <div className="col-2 d-flex align-items-center p-3">
-                <strong>$ {producto.unidades * producto.precio}.-</strong>
-            </div>
-            <div className="col-2 d-flex align-items-center p-3">
-                <i className="bi bi-x-circle"></i>
-            </div>
+            <Col sm={3} xs={4} className="p-3">
+                <img src={`${imgUrl}${producto.imagen}`} alt={producto.tipo} className='w-100' />
+            </Col>
+            <Col sm={9} xs={6} className="p-3">
+                <p className='mb-0 fw-bold'>{producto.tipo}</p>
+                <p className='mb-0'>Unidades: {producto.unidades} - $ {producto.precio}.- c/u </p>
+                <p className='mb-0 fw-bold'>Total $ {producto.unidades * producto.precio}.-</p>
+                <Button size='sm' className='btn btn-secondary' onClick={handleDelProduct}>
+                    <i className="bi bi-trash3"></i> Eliminar
+                </Button>
+                
+            </Col>  
         </Row>
     )
 };

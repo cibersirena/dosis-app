@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 function ItemCount ({ stock, onAdd }){
     const [unidades, setUnidades] = useState(0);
     const [stockDisponible, setStockDisponible] = useState("");
-    const [btnAgregarCarrito, setBtnAgregarCarrito] = useState("btn-principal");
+    const [btnAgregarCarrito, setBtnAgregarCarrito] = useState(true);
 
     useEffect ( () => {
         let stockValor;
@@ -15,8 +15,7 @@ function ItemCount ({ stock, onAdd }){
             }else{
                 stockValor = 'disabled'
             };
-            setStockDisponible(stockValor);
-    
+        setStockDisponible(stockValor);
     },[stock]);
 
     const sumarUnidad = () => {
@@ -29,7 +28,7 @@ function ItemCount ({ stock, onAdd }){
 
     const handleAddCart = () => {
         if (unidades > 0) {
-            setBtnAgregarCarrito("hide");
+            setBtnAgregarCarrito(false);
             setStockDisponible("disabled");
         };  
         onAdd(unidades);
@@ -54,7 +53,7 @@ function ItemCount ({ stock, onAdd }){
                 </Col>
                 <Col></Col>
             </Row>
-            <Button variant="outline-dark" id='comprar' className={btnAgregarCarrito} onClick={handleAddCart}>Agregar al carrito</Button>
+            {btnAgregarCarrito && <Button variant="outline-dark" id='comprar' onClick={handleAddCart}>Agregar al carrito</Button>}
         </> 
     );
 };

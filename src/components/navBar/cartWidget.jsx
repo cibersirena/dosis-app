@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { cartContext } from '../context/cartProvider';
 
 function CartWidget() {
-
     const { unidades } = useContext(cartContext);
     
     return (

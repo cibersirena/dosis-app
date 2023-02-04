@@ -15,4 +15,3 @@ const dataBase = getFirestore(app); // dato tipo Firestore
 export const productsCollection = collection(dataBase, "productos"); // dato CollectionReference / Query
 export const categoryCollection = collection(dataBase, "categorias"); // dato CollectionReference / Query
 export const salesCollection = collection(dataBase, "ventas");
-
