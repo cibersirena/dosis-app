@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import Container from 'react-bootstrap/Container';
 import Spinner from 'react-bootstrap/Spinner';
 import ItemDetail from './itemDetail';
@@ -25,7 +26,7 @@ function ItemDetailContainer() {
             })
             .catch ( (err) => {
                 err = "Se produjo un error al cargar el detalle del producto";
-                alert(err);
+                toast.error(err);
             })
         };
 

@@ -1,4 +1,3 @@
-//import { dataProductos } from '../productos';
 import { useEffect, useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
@@ -8,6 +7,7 @@ import CartWidget from './cartWidget';
 import MenuDesplegable from './menuDesplegable';
 import Logo from '../../assets/logo-dosis.png';
 import { Link, NavLink } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { categoryCollection } from '../../firebaseConfig';
 import { getDocs, query, orderBy } from 'firebase/firestore';
 import './navBar.css';
@@ -31,7 +31,7 @@ function NavBar() {
             })
             .catch( (err) => {
                 err = "Se produjo un error al cargar las categorias";
-                alert(err);
+                toast.error(err);
             });
         };
 

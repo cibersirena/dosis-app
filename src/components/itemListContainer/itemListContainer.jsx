@@ -7,6 +7,7 @@ import ItemList from './itemList';
 import './itemListContainer.css';
 import { productsCollection } from '../../firebaseConfig';
 import { getDocs, query, where, orderBy } from 'firebase/firestore';
+import { toast } from 'react-toastify';
 
 function ItemListContainer(props) {
     const [productos, setProductos] = useState([]);
@@ -33,7 +34,7 @@ function ItemListContainer(props) {
             })
             .catch( (err) => {
                 err = "Se produjo un error al cargar los productos";
-                alert(err);
+                toast.error(err);
             })
         };
 

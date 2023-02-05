@@ -2,6 +2,7 @@ import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useState, useEffect } from 'react';
+import { toast } from 'react-toastify';
 
 function ItemCount ({ stock, onAdd }){
     const [unidades, setUnidades] = useState(0);
@@ -19,11 +20,11 @@ function ItemCount ({ stock, onAdd }){
     },[stock]);
 
     const sumarUnidad = () => {
-        (stock > 0) && (unidades < stock) ? setUnidades(unidades + 1) : alert("No hay más stock, elegí una cantidad menor o igual a: "+ stock)
+        (stock > 0) && (unidades < stock) ? setUnidades(unidades + 1) : toast.warn("No hay más stock, elegí una cantidad menor o igual a "+ stock)
     };
 
     const restarUnidad = () => {
-        (unidades > 0) && (unidades <= stock) ? setUnidades(unidades - 1) : alert("La cantidad no puede ser negativa")
+        (unidades > 0) && (unidades <= stock) ? setUnidades(unidades - 1) : toast.warn("La cantidad no puede ser negativa")
     };
 
     const handleAddCart = () => {

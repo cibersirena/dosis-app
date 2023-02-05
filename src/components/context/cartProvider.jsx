@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { createContext } from "react";
+import { toast } from 'react-toastify';
+//import { salesCollection } from "../../firebaseConfig";
+//import { addDoc } from "firebase/firestore";
 
 export const cartContext = createContext();
 const { Provider } = cartContext;
@@ -10,6 +13,7 @@ const CartProvider = ({ children }) => {
     const [total, setTotal] = useState(0);
     const [unidades, setUnidades] = useState(0);
     const [totalPagar, setTotalPagar] = useState(0);
+    const [compraRealizada, setCompraRealizada] = useState({});
     let actualizacionCarrito = [...carrito];
     let actualizacionUnidades;
     let actualizacionTotalPagar;
@@ -32,7 +36,7 @@ const CartProvider = ({ children }) => {
         setTotal(producto.precio);
         setUnidades(actualizacionUnidades);
         setTotalPagar(actualizacionTotalPagar);
-  
+        toast.success("El producto se agregó con éxito al carrito");
     };
 
     const eliminarProducto = (idProduct) => {
@@ -45,6 +49,7 @@ const CartProvider = ({ children }) => {
         setCarrito(actualizacionCarrito);
         setUnidades(actualizacionUnidades);
         setTotalPagar(actualizacionTotalPagar);
+        toast.success("El producto se eliminó con éxito del carrito");
     };
 
     const vaciarCarrito = () => {
@@ -52,7 +57,26 @@ const CartProvider = ({ children }) => {
         setTotal(0);
         setUnidades(0);
         setTotalPagar(0);
+        toast.success("El carrito se vació con éxito");
     };
+
+    const venta = (compra) => {
+        console.log(compra);
+        setCompraRealizada(compra);
+        /*const ordenCompra = addDoc(salesCollection,compra);
+        ordenCompra
+        .then( (res) => {
+            console.log(res.id)
+            console.log(res)
+        } )
+        .catch( (err) => {
+            alert(err);
+        } )*/
+        setCarrito([]);
+        setTotal(0);
+        setUnidades(0);
+        setTotalPagar(0);
+    }
 
     const valorCartContext = {
         carrito,
@@ -61,7 +85,9 @@ const CartProvider = ({ children }) => {
         totalPagar,
         agregarProducto,
         eliminarProducto,
-        vaciarCarrito
+        vaciarCarrito,
+        venta,
+        compraRealizada
     };
 
     return (

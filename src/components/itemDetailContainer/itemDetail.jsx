@@ -1,6 +1,7 @@
 import { useState, useContext, useEffect } from 'react';
 import Badge from 'react-bootstrap/Badge';
 import Row from 'react-bootstrap/Row';
+import { toast } from 'react-toastify';
 import ItemCount from './itemCount';
 import { cartContext } from '../context/cartProvider';
 import { Link } from 'react-router-dom';
@@ -12,7 +13,7 @@ function ItemDetail ({producto}) {
     const { agregarProducto } = useContext(cartContext);
 
     const onAdd = (unidades) => {
-        unidades  > 0 ? setAgregarCarrito(true) : alert("La cantidad debe ser mayor a 0");
+        unidades  > 0 ? setAgregarCarrito(true) : toast.warn("La cantidad debe ser mayor a 0");
         setUnidadesLocal(unidades);
     };
     

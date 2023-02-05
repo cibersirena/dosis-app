@@ -7,8 +7,11 @@ import Footer from "./components/footer/footer";
 import About from "./components/about/about";
 import ItemDetailContainer from "./components/itemDetailContainer/itemDetailContainer";
 import Cart from "./components/cart/cart";
+import CartCheackout from "./components/cart/cartCheackout";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CartProvider from "./components/context/cartProvider";
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, Slide } from 'react-toastify';
 
 export default function App() {
   return (
@@ -48,6 +51,12 @@ export default function App() {
             }
           />
           <Route
+            path="/cheackout"
+            element={
+              <CartCheackout mensaje="Gracias por tu compra" />
+            }
+          />
+          <Route
             path="*"
             element={
               <div className="container px-4 px-lg-5 mt-5">
@@ -58,6 +67,7 @@ export default function App() {
         </Routes>
         <Footer />
       </BrowserRouter>
+      <ToastContainer autoClose={2000} position="top-right" transition={Slide} />
     </CartProvider>
   );
 };
