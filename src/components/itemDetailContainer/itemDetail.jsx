@@ -36,11 +36,8 @@ function ItemDetail ({producto}) {
                     <ItemCount stock={producto.stock} onAdd={onAdd} className='pt-5' />
                 </div>
                 <div className='text-center mt-3'>
-                    {agregarCarrito && 
-                        <>
-                        <Link to="../../cart" className='outline-dark btn btn-secondary mb-3 mx-1' id='finalizar'>Finalizar compra</Link>
-                        <Link to="../../" className='outline-dark btn mb-3 mx-1' id='seguir'>Seguir comprando</Link>
-                        </>}
+                    {agregarCarrito && <Link to="../../cart" className='outline-dark btn btn-secondary mb-3 mx-1' id='finalizar'>Finalizar compra</Link>}
+                    <Link to="../../" className='outline-dark btn mb-3 mx-1' id='seguir'>Seguir comprando</Link>
                 </div>
             </div>
         </Row>

@@ -54,7 +54,7 @@ function ItemCount ({ stock, onAdd }){
                 </Col>
                 <Col></Col>
             </Row>
-            {btnAgregarCarrito && <Button variant="outline-dark" id='comprar' onClick={handleAddCart}>Agregar al carrito</Button>}
+            {(btnAgregarCarrito && stockDisponible==="") && <Button variant="outline-dark" id='comprar' onClick={handleAddCart}>Agregar al carrito</Button>}
         </> 
     );
 };

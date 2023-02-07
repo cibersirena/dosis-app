@@ -44,11 +44,11 @@ function Cart (props) {
                     <Row className='justify-content-center'>
                         {carritoVacio ?
                         <>
-                            <Col sm={5} xs={12} className='mx-4 border border-secondary-subtle'>
+                            <Col sm={5} xs={12} className='mx-4 border border-secondary-subtle pb-4'>
                                 {carrito.map( (p, index) => ( <CartItem key={'producto_'+index} producto={p} delProduct={delProduct}>  </CartItem> ))} 
                                 <h5 className='text-end fw-bold'>total pagar: $ {totalPagar}.- </h5>
-                                <Link to="../../" className='outline-dark btn mb-3 mx-2 mt-4' id='seguir'>Seguir comprando</Link>
-                                <button className='outline-dark btn btn-secondary mb-3 mt-4' id='vaciar' onClick={vaciarCarrito}>Vaciar carrito</button>
+                                <Link to="../../" className='outline-dark btn me-2 mt-4' id='seguir'>Seguir comprando</Link>
+                                <button className='outline-dark btn btn-secondary me-2 mt-4' id='vaciar' onClick={vaciarCarrito}>Vaciar carrito</button>
                             </Col>
                             <Col sm={5} xs={12} className='mx-4 border border-secondary-subtle'>
                                 <h6 className='fw-bold mt-3'>Completa tus datos para finalizar tu compra</h6>
