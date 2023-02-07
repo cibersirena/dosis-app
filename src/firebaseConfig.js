@@ -10,8 +10,8 @@ const firebaseConfig = {
   appId: "1:804369768470:web:e49c46340726040dae9537"
 };
 
-const app = initializeApp(firebaseConfig); // dato tipo FirebaseApp
-const dataBase = getFirestore(app); // dato tipo Firestore
-export const productsCollection = collection(dataBase, "productos"); // dato CollectionReference / Query
-export const categoryCollection = collection(dataBase, "categorias"); // dato CollectionReference / Query
+const app = initializeApp(firebaseConfig);
+const dataBase = getFirestore(app);
+export const productsCollection = collection(dataBase, "productos"); 
+export const categoryCollection = collection(dataBase, "categorias");
 export const salesCollection = collection(dataBase, "ventas");

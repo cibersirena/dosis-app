@@ -3,7 +3,6 @@ import { useContext, useEffect, useState } from 'react';
 import { cartContext } from '../context/cartProvider';
 import Spinner from 'react-bootstrap/Spinner';
 import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import { Link } from 'react-router-dom';
 
 function CartCheackout (props){
@@ -35,20 +34,22 @@ function CartCheackout (props){
                 <p className='mb-0'>Nombre: {detalleOrden.usuario.nombre} </p>
                 <p className='mb-0'>email: {detalleOrden.usuario.email}</p>
                 <p>Teléfono: {detalleOrden.usuario.telefono}</p>
-                <h5>Artículos comprados</h5>
-                {detalleOrden.carrito.map( (p, index) => ( 
-                <Row className='justify-content-center mb-2' key={index}>
-                    <Col sm={2} xs={3} className="p-3">
-                        <img src={`${imgUrl}${p.imagen}`} alt={p.tipo} className='w-100' />
-                    </Col>
-                    <Col sm={10} xs={6} className="p-3">
-                        <p className='mb-0 fw-bold'>{p.tipo}</p>
-                        <p className='mb-0'>Unidades: {p.unidades} - $ {p.precio}.- c/u </p>
-                        <p className='mb-0 fw-bold'>Total $ {p.unidades * p.precio}.-</p>
-                    </Col>  
+                <h5 className='mb-3'>Artículos comprados</h5>
+                <Row className='gx-4 gx-lg-5 justify-content-start' id='productos' xs={1} md={2} xl={3}>
+                    {detalleOrden.carrito.map( (p, index) => ( 
+                        <div key={index} className='d-flex'>
+                            <div className='w-25'>
+                                <img src={`${imgUrl}${p.imagen}`} alt={p.tipo} className='w-100' />
+                            </div>
+                            <div className='mx-3'>
+                                <p className='mb-0 fw-bold'>{p.tipo}</p>
+                                <p className='mb-0'>Unidades: {p.unidades} - $ {p.precio}.- c/u </p>
+                                <p className='mb-0 fw-bold'>Total $ {p.unidades * p.precio}.-</p>
+                            </div>
+                        </div> ))
+                    }
                 </Row>
-                ))}
-                <h5>Total pagado: $ {detalleOrden.total}.- </h5>
+                <h5 className='mt-3'>Total pagado: $ {detalleOrden.total}.- </h5>
                 <Link to="../../" className='outline-dark btn mt-3' id='volver'>Volver</Link>
                 </>}
             </Container>

@@ -41,6 +41,10 @@ body {
   width: 100%;
 }
 
+.w-25 {
+  width: 25%;
+}
+
 .block {
   display: block;
 }

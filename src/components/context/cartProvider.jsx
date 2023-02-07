@@ -88,7 +88,7 @@ const CartProvider = ({ children }) => {
         })
         .catch( (err) => {
             err = "Se produjo un error al generar la orden de compra"
-            toast.success(err);
+            toast.error(err);
         }); 
     };
 
