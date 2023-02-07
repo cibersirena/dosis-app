@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { createContext } from "react";
 import { toast } from 'react-toastify';
-//import { salesCollection } from "../../firebaseConfig";
-//import { addDoc } from "firebase/firestore";
+import { salesCollection } from "../../firebaseConfig";
+import { addDoc, getDoc, doc } from "firebase/firestore";
 
 export const cartContext = createContext();
 const { Provider } = cartContext;
@@ -13,7 +13,7 @@ const CartProvider = ({ children }) => {
     const [total, setTotal] = useState(0);
     const [unidades, setUnidades] = useState(0);
     const [totalPagar, setTotalPagar] = useState(0);
-    const [compraRealizada, setCompraRealizada] = useState({});
+    const [detalleOrden, setDetalleOrden] = useState();
     let actualizacionCarrito = [...carrito];
     let actualizacionUnidades;
     let actualizacionTotalPagar;
@@ -61,22 +61,36 @@ const CartProvider = ({ children }) => {
     };
 
     const venta = (compra) => {
-        console.log(compra);
-        setCompraRealizada(compra);
-        /*const ordenCompra = addDoc(salesCollection,compra);
-        ordenCompra
+        const agregarCompra = addDoc(salesCollection,compra);
+        agregarCompra
         .then( (res) => {
-            console.log(res.id)
-            console.log(res)
-        } )
+            const idCompra = res.id;
+
+            const obtenerOrden = () => {
+                const referenciaOrden = doc(salesCollection,idCompra);
+                const pedidoOrden = getDoc(referenciaOrden);
+                pedidoOrden
+                .then( (res) => {
+                    const ordenEncontrada = { id: res.id, ...res.data()};
+                    setDetalleOrden(ordenEncontrada);
+                })
+                .catch ( (err) => {
+                    err = "Se produjo un error al cargar la orden de compra";
+                    toast.error(err);
+                });
+            };
+
+            obtenerOrden();
+            setCarrito([]);
+            setTotal(0);
+            setUnidades(0);
+            setTotalPagar(0);
+        })
         .catch( (err) => {
-            alert(err);
-        } )*/
-        setCarrito([]);
-        setTotal(0);
-        setUnidades(0);
-        setTotalPagar(0);
-    }
+            err = "Se produjo un error al generar la orden de compra"
+            toast.success(err);
+        }); 
+    };
 
     const valorCartContext = {
         carrito,
@@ -87,7 +101,7 @@ const CartProvider = ({ children }) => {
         eliminarProducto,
         vaciarCarrito,
         venta,
-        compraRealizada
+        detalleOrden
     };
 
     return (

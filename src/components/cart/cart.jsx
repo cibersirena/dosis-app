@@ -27,6 +27,7 @@ function Cart (props) {
         const compra = {
             usuario : user,
             carrito : carrito,
+            total : totalPagar,
             fecha: serverTimestamp()
         };
         venta(compra);
@@ -47,7 +48,7 @@ function Cart (props) {
                                 {carrito.map( (p, index) => ( <CartItem key={'producto_'+index} producto={p} delProduct={delProduct}>  </CartItem> ))} 
                                 <h5 className='text-end fw-bold'>total pagar: $ {totalPagar}.- </h5>
                                 <Link to="../../" className='outline-dark btn mb-3 mx-2 mt-4' id='seguir'>Seguir comprando</Link>
-                                <button className='outline-dark btn btn-secondary mb-3 mt-4' onClick={vaciarCarrito}>Vaciar carrito</button>
+                                <button className='outline-dark btn btn-secondary mb-3 mt-4' id='vaciar' onClick={vaciarCarrito}>Vaciar carrito</button>
                             </Col>
                             <Col sm={5} xs={12} className='mx-4 border border-secondary-subtle'>
                                 <h6 className='fw-bold mt-3'>Completa tus datos para finalizar tu compra</h6>
@@ -56,7 +57,7 @@ function Cart (props) {
                         </>
                         : <Col sm={10} className='mx-4 border border-secondary-subtle text-center'>
                             <p className='fw-bold mt-3'>Tu carrito está vacío</p>
-                            <Link to="../../" className='outline-dark btn mb-3 mx-2' id='seguir'>Volver</Link>
+                            <Link to="../../" className='outline-dark btn mb-3 mx-2' id='volver'>Volver</Link>
                         </Col>}      
                     </Row>
                 </>}

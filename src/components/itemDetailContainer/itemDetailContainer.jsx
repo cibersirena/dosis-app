@@ -15,7 +15,7 @@ function ItemDetailContainer() {
     useEffect( () => {
         const obtenerProducto = () => {
             setLoading(true);
-            const referenciaProducto = doc(productsCollection, productId)
+            const referenciaProducto = doc(productsCollection, productId);
             const pedidoProducto = getDoc(referenciaProducto);
 
             pedidoProducto
