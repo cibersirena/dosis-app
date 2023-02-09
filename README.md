@@ -1,7 +1,9 @@
 # Dosis Sublimación Web APP 💻
 Primer proyecto con React.
+
 Proyecto desarrollado como parte del curso de React Js en Coderhouse.
 e-commerce del emprendimiento Dosis Sublimación
+
 Link a la página del proyecto: [https://dosis-sublimacion-app.vercel.app/](https://dosis-sublimacion-app.vercel.app/)
 
 ---
