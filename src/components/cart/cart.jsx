@@ -31,7 +31,7 @@ function Cart (props) {
             fecha: serverTimestamp()
         };
         venta(compra);
-        setCompraRealizada(true)
+        setCompraRealizada(true);
     };
 
     return (

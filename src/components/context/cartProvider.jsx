@@ -30,7 +30,7 @@ const CartProvider = ({ children }) => {
         }else {
             producto.unidades = unidadesLocal; 
             actualizacionCarrito.push(producto);
-        }
+        };
         
         setCarrito(actualizacionCarrito);
         setTotal(producto.precio);

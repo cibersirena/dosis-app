@@ -1,70 +1,87 @@
-# Getting Started with Create React App
+# Dosis Sublimación Web APP 💻
+Primer proyecto con React.
+Proyecto desarrollado como parte del curso de React Js en Coderhouse.
+e-commerce del emprendimiento Dosis Sublimación
+Link a la página del proyecto:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+---
+## Para hacer funcionar este proyecto, se instalaron estas dependencias. Tenés que instalarlas para que el proyecto funcione 🚀
 
-## Available Scripts
+* npm modules: 9.2.0
+* bootstrap: 5.2.3
+* firebase: 9.16.0
+* react-bootstrap: 2.7.0
+* react-dom: 18.2.0
+* react-router-dom: 6.6.1
+* react-toastify: 9.1.1
 
-In the project directory, you can run:
+---
+## Recorrido inicial del proyecto 📝
+En la Home, o Página de inicio, vas a poder visualizar los productos que están a la venta, aquellos que no tengan stock se identifican con un badge.
 
-### `npm start`
+Desde la barra de navegación vas a poder acceder a la sección *"Quiénes somos"* (about) -en construcción-, botón de *"Registro"* -no desarrollado en este proyecto- y la pestaña *"Productos"*, que contiene todos los productos a la venta. En la barra de navegación también, está disponible el acceso al carrito de compras haciendo click en el icono, donde, además se indica el número de productos que contiene.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Desde la pestaña *"Productos"* podés filtrar los productos por categoría.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Para acceder al detalle de cada producto basta con hacer click en el botón *"Ver detalle"* debajo de cada uno.
 
-### `npm test`
+![Image](https://cibersirenadesign.000webhostapp.com/images/preview-dosis/Dosis-home.png)
+![Image](https://cibersirenadesign.000webhostapp.com/images/preview-dosis/Dosis-home-filtro.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Detalle del producto
+Aquí vas a encontrar: 
+* Imagen del producto
+* Nombre del producto
+* Descripción
+* Precio
+* Contador que permite seleccionar la cantidad de unidades del producto (si es menor a 0 o supera el stock del producto emite una alerta al usuario). 
+* Botón *"Agregar al carrito"* (si las unidades es 0 emite una alerta al usuario. Al hacer click, este cambia a "Finalizar compra" que te dirige al carrito de compras)
+* Botón *"Seguir comprando"* (te dirige al inicio)
 
-### `npm run build`
+En caso que el producto se encuentre sin stock, el contador se inhabilita y el botón *"Agregar al carrito"* no se muestra.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![Image](https://cibersirenadesign.000webhostapp.com/images/preview-dosis/Dosis-detalle.png)
+![Image](https://cibersirenadesign.000webhostapp.com/images/preview-dosis/Dosis-detalle-2.png)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Carrito de compras
+En el Carrito de Compras podés visualizar el listado de productos agregados. El detalle consta de: imagen, nombre del producto, unidades, precio por unidad y precio total (multiplicando unidades del producto seleccionado, por el precio unitario).
+Los productos se pueden eliminar del carrito haciendo click en el icono *"tacho de basura"* o borrar la totalidad del carrito desde el botón *"Vaciar carrito"*. En ambos casos, el total que se muestra en el carrito se actualizará automáticamente.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+También se muestra el total de la compra (suma de los totales de cada producto) y un botón *"Seguir comprando"* que te dirige al inicio donde están todos los productos.
 
-### `npm run eject`
+Además consta de un formulario necesario para poder finalizar la compra. Los datos solicitados son Nombre completo, email y teléfono (10 números, sin espacios) todos obligatorios
+Botón *"Finalizar compra"* genera la orden de compra y te dirige al cheackout. Ademas de vaciar el carrito y actualizar las unidades que se muestran en el icono de la barra de navegación.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+![Image](https://cibersirenadesign.000webhostapp.com/images/preview-dosis/Dosis-carrito.png)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Cheackout
+Aquí se te agradece la compra y muestra el detalle de la misma:
+* Número de orden
+* Fecha
+* Datos del comprador
+* Productos comprados
+* Total pagado
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Además del botón *"Volver"* que te regresa al inicio del sitio.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+![Image](https://cibersirenadesign.000webhostapp.com/images/preview-dosis/Dosis-cheackout.png)
 
-## Learn More
+---
+## Firebase 📁
+Para la estructura backend de este proyecto se utilizó Firebase.
+Se crearon tres Colecciones:
+* Productos: contiene los datos de los productos que se muestran en la página (tipo, precio, imagen, descripción, stock, item)
+* Categorias: contiene las categorías utilizadas para armar el menú de filtros
+* Ventas: contiene todas las órdenes generadas por los usuarios al finalizar compra.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
+## React-Router ✒️
+Para poder crear las rutas de la página web, se usó *React-router-dom*.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
+## Context 🔄
+Este proyecto contiene un gran Contexto: *cartProvider*, el cual contiene las funcionalidades de la sección del Carrito de Compras.
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+## Sobre mí 🙋
+Mi nombre es Gabriela Monteforte pero muchos me conocen como Cibersirena. Vivo en Buenos Aires. Soy diseñadora gráfica y desarrolladora web. A mediados del 2022 empecé a incursionar en la programación front end, realicé el curso de JS y React.JS en Coder House. 
